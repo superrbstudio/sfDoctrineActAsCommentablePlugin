@@ -1,0 +1,26 @@
+Comment:
+  First:
+    commentable_model: pkBlogPost
+    commentable_id: 1
+    title: first
+    text: first
+    name: Dan
+    children:
+      first_c1:
+        commentable_model: pkBlogPost
+        commentable_id: 1
+        title: Loser
+        text: Loser
+        name: Mitch
+      first_c2:
+        commentable_model: pkBlogPost
+        commentable_id: 1
+        title: Your Mad
+        text: You are mad you weren't first
+        name: Dan
+  Second:
+    commentable_model: pkBlogPost
+    commentable_id: 1
+    title: second
+    text: second
+    name: Rick

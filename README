@@ -1,0 +1,18 @@
+= Commentable behavior plugin =
+
+`sfDoctrineActAsCommentablePlugin` provides a doctrine behavior as well symfony modules to quickly add comments to any Doctrine model.
+
+==Support==
+
+
+
+==Licence==
+This plugin is licensed under the MIT license. For the full copyright and license information, please view the LICENSE file that was distributed with this source code.
+
+==Introduction==
+
+
+
+
+
+==Installation==

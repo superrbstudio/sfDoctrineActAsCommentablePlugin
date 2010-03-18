@@ -1,0 +1,31 @@
+Comment:
+  tableName: a_comment
+  actAs:
+    NestedSet:
+      hasManyRoots: true
+      rootColumnName: root_id
+    Timestampable: ~
+  columns:
+    commentable_model: 
+      type: string(50)
+      notnull: true
+    commentable_id:
+      type: integer(4)
+      notnull: true
+    user_id:
+      type: integer(4)
+    title: 
+      type: string(100)
+    name:
+      type: string(50)
+    email:
+      type: string(50)
+    website:
+      type: string(50)
+    text:
+      type: string
+  indexes:
+    model_index:
+      fields: [commentable_model, commentable_id]
+          
+        

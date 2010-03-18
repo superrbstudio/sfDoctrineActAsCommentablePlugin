@@ -1,0 +1,18 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Comment
+    theme:                 aAdmin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          a_comment_admin
+    with_doctrine_route:     1
+    
+    config:
+      actions:
+      list:
+        display: [commentable_model, title, text, created_at]
+      filter: ~
+        

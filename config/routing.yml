@@ -1,0 +1,29 @@
+comment_comment:
+  url: /aComment/comment/:commentable_model/:commentable_id
+  param:
+    module: aComment
+    action: comment 
+
+a_comment_admin:
+  class: sfDoctrineRouteCollection
+  options:
+    model:               Comment
+    module:              aCommentAdmin
+    prefix_path:         a_comment_admin
+    column:              id
+    with_wildcard_routes: true
+
+comment:
+  class: sfDoctrineRouteCollection
+  options:
+    model:  Comment
+    module: aComment
+    column: id
+    with_wildcard_routes: true
+    prefix_path: comment
+    object_actions:
+      reply: [get, post]
+      
+      
+
+  

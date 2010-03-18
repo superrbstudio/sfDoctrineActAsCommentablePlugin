@@ -1,0 +1,1 @@
+<?php include_partial('pkComment/comment', array('comment' => $comment, 'depth' => 0)) ?>
