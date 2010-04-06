@@ -15,4 +15,7 @@ generator:
       list:
         display: [commentable_model, title, text, created_at]
       filter: ~
+      form:
+        fields:  [ title, name, email, website, text ]
+        display: [ title, name, email, website, text ]
         
