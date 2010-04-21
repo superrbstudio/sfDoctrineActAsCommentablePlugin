@@ -8,10 +8,10 @@ class BaseaCommentActions extends sfActions
     $this->forward404Unless($commentable_object = $this->getObjectFromRequest($request));
     $this->options = sfConfig::get("sfDoctrineActAsCommentable_models_".get_class($commentable_object));
     
-    $form = new CommentPostForm(
-      $request->getParameter('commentable_model'), 
-      $request->getParameter('commentable_id')
-    );
+    $form = new CommentPostForm(array(),array(
+      'commentable_model' => $request->getParameter('commentable_model'),
+      'commentable_id' => $request->getParameter('commentable_id')
+    ));
     if($request->isMethod('POST'))
     { 
       $form->bind($request->getParameter('comment'));

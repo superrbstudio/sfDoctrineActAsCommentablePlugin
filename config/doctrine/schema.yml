@@ -12,6 +12,8 @@ Comment:
     commentable_id:
       type: integer(4)
       notnull: true
+    namespace:
+      type: string(50)
     user_id:
       type: integer(4)
     title: 

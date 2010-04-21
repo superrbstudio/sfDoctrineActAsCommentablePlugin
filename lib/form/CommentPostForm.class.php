@@ -8,21 +8,20 @@
  * @author     ##AUTHOR_NAME##
  * @version    SVN: $Id: sfDoctrineFormPluginTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class CommentPostForm extends PluginCommentForm
+class CommentPostForm extends BaseCommentForm
 {
-  //Comments must be linked to a model and a id
-  public function __construct($commentable_model, $commentable_id)
-  {
-    $this->commentable_model = $commentable_model;
-    $this->commentable_id    = $commentable_id;
-    
-    $this->config = CommentableToolkit::getConfig($commentable_model);
-    
-    parent::__construct();
-  }
-
   public function setup()
   {
+    $this->commentable_model = $this->getOption('commentable_model', false);
+    $this->commentable_id    = $this->getOption('commentable_id', false);
+    $this->setDefault('namespace', $this->getOption('namespace', ''));
+
+    if(!$this->commentable_model)
+      throw new Exception("CommentPostForm requires commentable_model option.");
+    if(!$this->commentable_id)
+      throw new Exception("CommentPostForm requires commentable_id option.");
+
+    $this->config = CommentableToolkit::getConfig($this->commentable_model);
     
     $userConfig = $this->config;
     $layout = $userConfig['layout'];
@@ -84,6 +83,9 @@ class CommentPostForm extends PluginCommentForm
         )
       );
     }
+
+    $widgets['namespace'] = new sfWidgetFormInputHidden();
+    $validators['namespace'] = new sfValidatorString(array('required' => false));
     
     $this->setWidgets($widgets);
     $this->setValidators($validators);
