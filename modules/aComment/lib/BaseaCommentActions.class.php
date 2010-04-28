@@ -37,10 +37,11 @@ class BaseaCommentActions extends sfActions
   public function executeReply(sfRequest $request)
   {
     $this->forward404Unless($parentComment = $this->getRoute()->getObject());
-    $form = new CommentPostForm(
-      $parentComment['commentable_model'],
-      $parentComment['commentable_id']
-    );
+    $form = new CommentPostForm(array(),array(
+      'commentable_model' => $parentComment['commentable_model'],
+      'commentable_id' => $parentComment['commentable_id'],
+      'namespace' => $parentComment['namespace']
+    ));
     if($request->isMethod('POST'))
     {
       $form->bind($request->getParameter('comment'), $request->getFiles('comment'));
