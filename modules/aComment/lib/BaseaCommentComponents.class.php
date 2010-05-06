@@ -19,4 +19,13 @@ class BaseaCommentComponents extends sfComponents
       'namespace' => $this->namespace
     ));
   }
+
+  public function executeReplyForm()
+  {
+    $this->form = new CommentPostForm(array(),array(
+      'commentable_model' => $this->parentComment['commentable_model'],
+      'commentable_id' => $this->parentComment['commentable_id'],
+      'namespace' => $this->parentComment['namespace']
+    ));
+  }
 }
