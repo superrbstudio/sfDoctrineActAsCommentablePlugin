@@ -6,7 +6,7 @@ class BaseaCommentComponents extends sfComponents
   {
     $this->maxDepth = sfConfig::get("app_sfDoctrineActAsCommentable_".get_class($this->object), 1);
     $q = Doctrine::getTable('Comment')->createQuery()->addOrderBy('created_at DESC');
-    if(isset($this->namespace))
+    if(!empty($this->namespace))
       $q->andWhere('namespace = ?', $this->namespace);
     $this->comments = $this->object->getCommentsAsTree($q);
   }
