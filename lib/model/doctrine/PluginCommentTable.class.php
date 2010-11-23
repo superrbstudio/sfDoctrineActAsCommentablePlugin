@@ -63,9 +63,10 @@ class PluginCommentTable extends Doctrine_Table
   {
     if(is_null($q)) $q = $this->createQuery('c');
     $rootAlias = $q->getRootAlias();
-    $q->select("count(*) as comment_count")
-      ->groupBy("commentable_model, commentable_id");
-    $result = $this->retrieveCommentsForObject($object, $q);
+    $q->select("count(*) as comment_count");
+    $result = $this->retrieveCommentsForObject($object, $q, Doctrine::HYDRATE_SINGLE_SCALAR);
+
+    return $result;
   }
   
 }
