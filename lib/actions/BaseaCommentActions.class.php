@@ -2,7 +2,7 @@
 
 class BaseaCommentActions extends sfActions
 {
-  public function executeComment(sfRequest $request)
+  public function executeComment(sfWebRequest $request)
   {
     //Check if we have a valid object to attach a comment to
     $this->forward404Unless($commentable_object = $this->getObjectFromRequest($request));
@@ -21,6 +21,8 @@ class BaseaCommentActions extends sfActions
         $treeObject = Doctrine::getTable('Comment')->getTree();
         $treeObject->createRoot($form->getObject());
         return $this->renderPartial("aComment/comment", array("comment" => $form->getObject()));
+      } elseif($request->isXmlHttpRequest()) {
+        return $this->forward404();
       }
     }
     $this->form = $form;
@@ -34,7 +36,7 @@ class BaseaCommentActions extends sfActions
     return Doctrine::getTable($commentable_model)->findOneBy('id', $commentable_id);
   }
   
-  public function executeReply(sfRequest $request)
+  public function executeReply(sfWebRequest $request)
   {
     $this->forward404Unless($parentComment = $this->getRoute()->getObject());
     $form = new CommentPostForm(array(),array(
@@ -50,6 +52,8 @@ class BaseaCommentActions extends sfActions
         $form->save();
         $form->getObject()->getNode()->insertAsLastChildOf($parentComment);
         return $this->renderPartial('aComment/comment', array('comment' => $form->getObject()));
+      } elseif($request->isXmlHttpRequest()) {
+        return $this->forward404();
       }
     }
     return $this->renderPartial('aComment/replyForm', array('form' => $form, 'parentComment' => $parentComment));
